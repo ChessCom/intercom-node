@@ -60,6 +60,7 @@ export default class Conversation {
         userId,
         email,
         attachmentUrls,
+        attachmentFiles,
     }: ReplyByIdAsUserData) {
         const data: ReplyToConversationAsUser = {
             message_type: ReplyToConversationMessageType.COMMENT,
@@ -69,6 +70,7 @@ export default class Conversation {
             user_id: userId,
             email: email,
             attachment_urls: attachmentUrls,
+            attachment_files: attachmentFiles,
         };
         return this.client.post<ConversationObject>({
             url: `/${this.baseUrl}/${id}/reply`,
@@ -333,6 +335,7 @@ interface ReplyToConversationAsUser {
     user_id?: string;
     email?: string;
     attachment_urls?: Array<string>;
+    attachment_files?: Array<Attachment>;
 }
 
 interface ReplyToConversationAsAdmin {
@@ -343,6 +346,12 @@ interface ReplyToConversationAsAdmin {
     attachment_urls?: Array<string>;
 }
 
+interface Attachment {
+    content_type: string;
+    name: string;
+    data: string;
+}
+
 interface ReplyByIdAsUserData {
     id: string;
     body: string;
@@ -350,6 +359,7 @@ interface ReplyByIdAsUserData {
     userId?: string;
     email?: string;
     attachmentUrls?: Array<string>;
+    attachmentFiles?: Array<Attachment>;
 }
 
 interface ReplyByIdAsAdminData {
