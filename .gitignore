@@ -20,7 +20,6 @@ pids
 node_modules
 
 # Compiled version
-dist
 
 # Yarn 3.x
 .pnp.*
@@ -42,3 +41,5 @@ lib/*.js
 lib/**/*.js
 test/*.js
 test/**/*.js
+
+.idea/
